@@ -1,0 +1,12 @@
+﻿@using WeatherApp.Data
+@model WeatherAnalysisResult
+
+<div class="weather-analysis">
+    <h3>Toplam Puan: @Model.TotalScore</h3>
+    <ul>
+        @foreach (var comment in Model.Comments)
+        {
+            <li>@comment</li>
+        }
+    </ul>
+</div>

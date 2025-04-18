@@ -1,0 +1,11 @@
+﻿@model WeatherApp.Data.WeatherAnalysisResult
+
+<h2 class="text-center">SucukAI Kararı</h2>
+<p class="text-center"><strong>Toplam Skor:</strong> @Model.TotalScore</p>
+
+<ul class="list-group">
+    @foreach (var yorum in Model.Comments)
+    {
+        <li class="list-group-item">@yorum</li>
+    }
+</ul>

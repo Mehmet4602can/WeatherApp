@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "SucukAI Hava Durumu";
+}
+
+<h2>SucukAI Hava Durumu</h2>
+
+<button id="getLocationBtn">Konumu Al ve Hava Durumunu Gör</button>
+
+<div id="weatherResult"></div>
+
+@section Scripts {
+    <script>
+                document.getElementById("getLocationBtn").addEventListener("click", function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+
+                    fetch('/Weather/Index', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ latitude: lat, longitude: lon })
+                    })
+                    .then(response => response.text())
+                    .then(html => {
+                        // Tam sayfa yenileme gibi gömme yapıyoruz
+                        document.open();
+                        document.write(html);
+                        document.close();
+                    })
+                    .catch(error => console.error('Hata:', error));
+                });
+            } else {
+                alert("Konum alınamıyor lan!");
+            }
+        });
+    </script>
+}
