@@ -5,13 +5,26 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//swagger deneme
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+//jwt servislerini ekliyoruz
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+builder.Services.AddScoped<JwtTokenService>();
+
 //WeatherService'i ekliyoruz
 builder.Services.AddHttpClient<WeatherService>();
 //Motor için tavsiye servisini ekliyoruz.
 builder.Services.AddSingleton<MotorAdviceService>();
 
+
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
