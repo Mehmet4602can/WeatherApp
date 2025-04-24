@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WatherApp.Entity.RequestAPİ
 {
-    public class Wather
+    public class Weather
     {
         public string Description { get; set; }
         public string Icon { get; set; }

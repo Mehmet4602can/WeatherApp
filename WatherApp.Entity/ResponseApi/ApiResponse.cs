@@ -9,8 +9,8 @@ namespace WatherApp.Entity.ResponseApi
 {
     public class ApiResponse
     {
-        public WatherData Data { get; set; }
-        public string message { get; set; }
+        public WeatherData Data { get; set; }
+        public string Message { get; set; }
         public bool Success { get; set; }
     }
 }

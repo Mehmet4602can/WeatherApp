@@ -1,8 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model WatherApp.Entity.RequestAPİ.WeatherData
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>@Model.Name</h1>
+<p>Sıcaklık: @Model.Main.Temp °C</p>
+<p>Min Sıcaklık: @Model.Main.TempMin °C</p>
+<p>Max Sıcaklık: @Model.Main.TempMax °C</p>
+<p>Nem: @Model.Main.Humidity %</p>
+<p>Durum: @Model.Weather.FirstOrDefault().Description</p>
+<p>Rüzgar Hızı: @Model.Wind.Speed m/s</p>

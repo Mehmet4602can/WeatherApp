@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WatherApp.Entity.RequestAPİ
 {
-    public class OpenWatherRequest
+    public class OpenWeatherRequest
     {
         public string City { get; set; }
         public string ApiKey { get; set; }

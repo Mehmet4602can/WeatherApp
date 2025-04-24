@@ -1,7 +1,12 @@
+using WatherApp.Business;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//WeatherService'i ekliyoruz
+builder.Services.AddHttpClient<WeatherService>();
 
 var app = builder.Build();
 

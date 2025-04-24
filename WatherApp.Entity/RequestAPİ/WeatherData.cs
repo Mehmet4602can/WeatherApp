@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WatherApp.Entity.RequestAPİ
 {
-    public class WatherData
+    public class WeatherData
     {
-        public string name {  get; set; }
+        public string Name {  get; set; }
         public Main Main { get; set; }
-        public List<Wather> Wather { get; set; }
+        public List<Weather> Weather { get; set; }
         public Wind Wind { get; set; }
     }
 }
