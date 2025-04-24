@@ -8,12 +8,14 @@ namespace WatherApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly MotorAdviceService _motorAdvice;
         private readonly ILogger<HomeController> _logger;
         private readonly WeatherService _weatherService;
-        public HomeController(ILogger<HomeController> logger, WeatherService weatherService)
+        public HomeController(ILogger<HomeController> logger, WeatherService weatherService, MotorAdviceService motorAdvice)
         {
             _logger = logger;
             _weatherService = weatherService;
+            _motorAdvice = motorAdvice;
         }
 
         public async Task<IActionResult> Index()
@@ -28,6 +30,8 @@ namespace WatherApp.Controllers
             var response = await _weatherService.GetWeatherDataAsync(request);
             if(response.Success)
             {
+                var advice = _motorAdvice.GetAdvice(response.Data);
+                ViewBag.Advice = advice;
                 return View(response.Data);
             }
             else

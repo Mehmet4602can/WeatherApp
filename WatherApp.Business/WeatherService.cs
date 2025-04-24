@@ -17,8 +17,10 @@ namespace WatherApp.Business
             var url = $"{_baseUrl}?q={request.City}&appid={request.ApiKey}&units={request.Units}&lang={request.Language}";
             try
             {
-                var response = await _httpClient.GetStringAsync(url);
-                var weatherData = JsonConvert.DeserializeObject<WeatherData>(response);
+                var response = await _httpClient.GetAsync(url);
+                if (!response.IsSuccessStatusCode) { /* logla vs. */ }
+                var json = await response.Content.ReadAsStringAsync();
+                var weatherData = JsonConvert.DeserializeObject<WeatherData>(json);
                 return new ApiResponse
                 {
                     Data = weatherData,

@@ -7,6 +7,8 @@ builder.Services.AddControllersWithViews();
 
 //WeatherService'i ekliyoruz
 builder.Services.AddHttpClient<WeatherService>();
+//Motor için tavsiye servisini ekliyoruz.
+builder.Services.AddSingleton<MotorAdviceService>();
 
 var app = builder.Build();
 
