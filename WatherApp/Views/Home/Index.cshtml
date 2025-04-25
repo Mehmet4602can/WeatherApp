@@ -1,12 +1,49 @@
 ﻿@model WatherApp.Entity.RequestAPİ.WeatherData
 
+
 <h1>@Model.Name</h1>
 <p>Sıcaklık: @Model.Main.Temp °C</p>
-<p>Min Sıcaklık: @Model.Main.TempMin °C</p>
-<p>Max Sıcaklık: @Model.Main.TempMax °C</p>
+<p>Min Sıcaklık: @Model.Main.Temp_min °C</p>
+<p>Max Sıcaklık: @Model.Main.Temp_max °C</p>
 <p>Nem: @Model.Main.Humidity %</p>
 <p>Durum: @Model.Weather.FirstOrDefault().Description</p>
-<p>Rüzgar Hızı: @Model.Wind.Speed m/s</p>
+<p>Rüzgar Hızı: @Model.Wind.Speed km/h<p>
 <hr />
 <h3>Motorcu Tavsiyesi:</h3>
 <p style="font-weight: bold; font-size: 1.2em;">@ViewBag.Advice</p>
+
+<script>
+    window.onload = function() {
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(snowPosition, snowError);
+        }
+        else{
+            alert("Tarayıcıdan Konum Bilgisialınamıyor!");
+        }
+    }
+    function snowPosition(){
+        var lat = position.coords.latitude;
+        var lon = position.coords.latitude;
+
+        console.log("Enlem: " + lat + "Boylam: " + lon);
+
+        window.location.href = '/Home/GetWeatherByLocation?lat=${lat}&lon=${lon}';
+    }
+
+    function snowError(error){
+        switch(error.code){
+            case error.PERMISSION_DENIED:
+                alert("Kullanıcı Konum Bilgisini Paylaşmayı Reddetti!");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Konum Bilgisi Alınamadı!");
+                break;
+            case error.TIMEOUT:
+                alert("Zaman Aşımına Uğradı!\nKonum Alınamıyor!");
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("Bilinmeyen Bir Hata Oldu!");
+                break;
+        }
+    }
+</script>

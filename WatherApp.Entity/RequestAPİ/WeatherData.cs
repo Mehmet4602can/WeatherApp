@@ -12,5 +12,6 @@ namespace WatherApp.Entity.RequestAPİ
         public Main Main { get; set; }
         public List<Weather> Weather { get; set; }
         public Wind Wind { get; set; }
+        public int Visibility { get; set; }
     }
 }

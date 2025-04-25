@@ -22,7 +22,7 @@ namespace WatherApp.Controllers
         {
             var request = new OpenWeatherRequest
             {
-                City = "Istanbul",
+                City = "Kahramanmaras",
                 ApiKey = "521e88579d6daa2e9424d791a334c6f6",
                 Units = "metric",
                 Language = "tr",
